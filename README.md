@@ -1,4 +1,5 @@
 # market-data
+Before any step, please create server/assets/stocks_data.csv to populate the table.
 
 ## setup database
 <ul>

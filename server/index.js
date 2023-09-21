@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const Stock = require('./models/stockModel');
 const stockSeed = require('./seeders/stocks');
+const router = require('./routes/index');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -15,11 +16,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/api', (req, res, next) => {
-  console.log('API');
-  res.send('API response');
-  next();
-});
+app.use('/api/v1', router);
 
 app.use((req, res, next) => {
   console.log('404');

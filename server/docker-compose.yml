@@ -16,6 +16,7 @@ services:
       - SQL_PASSWORD=marketD@ta12345
       - SQL_HOST=sql_server_db
       - SQL_PORT=1433
+      - POLYGON_API_KEY=5_9mBjEpE5W6RcT9mAma8qs8IOmpqpup
     volumes:
       - serverdata:/var
     depends_on:

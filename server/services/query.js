@@ -13,6 +13,20 @@ const getHighest = async ({
   }
 }
 
+const getAverage = async ({
+  date,
+  serie
+}) => {
+  try {
+    const data = await stockModel.getAverage({ date, serie });
+    return data;
+  } catch (error) {
+    console.log('Error on getAverage service', error);
+    throw new Error(error);
+  }
+}
+
 module.exports = {
   getHighest,
+  getAverage,
 }

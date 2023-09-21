@@ -19,6 +19,26 @@ const getHighest = async (req, res) => {
   }
 }
 
+const getAverage = async (req, res) => {
+  try {
+    const {
+      date,
+      serie
+    } = req.query;
+    const data = await queryService.getAverage({ date, serie });
+    res.status(200).json({
+      ...data
+    });
+  } catch (error) {
+    console.log('Error on getAverage controller', error);
+    return res.status(500).json({
+      msg: 'Server error',
+      error: error.message
+    });
+  }
+}
+
 module.exports = {
   getHighest,
+  getAverage,
 }

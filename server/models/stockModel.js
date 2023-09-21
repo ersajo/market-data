@@ -76,9 +76,25 @@ const getHighest = async ({
   }
 }
 
+const getAverage = async ({
+  date,
+  serie
+}) => {
+  try {
+    const [results] = await sequelize.query(`SELECT AVG(stock_open) as average_opening_price FROM stocks WHERE stock_timestamp = '${date}' AND stock_series = '${serie}'`);
+    return {
+      average_opening_price: results[0].average_opening_price
+    };
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
 module.exports = {
   createTable,
   insert,
   countTotal,
   getHighest,
+  getAverage
 };

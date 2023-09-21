@@ -16,7 +16,7 @@ const createTable = async () => {
         stock_prevClose FLOAT NOT NULL,
         stock_totTrdQty FLOAT NOT NULL,
         stock_totTrdVal FLOAT NOT NULL,
-        stock_timestamp DATETIME NOT NULL,
+        stock_timestamp DATE NOT NULL,
         stock_totalTrades INTEGER NOT NULL,
         stock_isin VARCHAR(255) NOT NULL,
         PRIMARY KEY (stock_id)
@@ -60,8 +60,25 @@ const countTotal = async () => {
   }
 }
 
+const getHighest = async ({
+  date,
+  limit = 5
+}) => {
+  try {
+    const [results, count] = await sequelize.query(`SELECT TOP ${limit} stock_symbol AS symbol, stock_series AS series, stock_close AS closing_price FROM stocks WHERE stock_timestamp = '${date}' ORDER BY stock_high DESC`);
+    return {
+      results,
+      count: count
+    };
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
 module.exports = {
   createTable,
   insert,
   countTotal,
+  getHighest,
 };

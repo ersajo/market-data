@@ -32,3 +32,6 @@ Before any step, please create server/assets/stocks_data.csv to populate the tab
     docker compose up backend
   </li>
 </ul>
+
+## API documentation
+https://www.postman.com/ersajo/workspace/ruut/collection/8526807-3b269be0-9988-4265-b1e7-3b196baa4287

@@ -26,7 +26,34 @@ const getAverage = async ({
   }
 }
 
+const getHighestTrading = async ({
+  date
+}) => {
+  try {
+    const data = await stockModel.getHighestTrading({ date });
+    return data;
+  } catch (error) {
+    console.log('Error on getHighestTrading service', error);
+    throw new Error(error);
+  }
+}
+
+const getTotalTrading = async ({
+  date,
+  serie
+}) => {
+  try {
+    const data = await stockModel.getTotalTrading({ date, serie });
+    return data;
+  } catch (error) {
+    console.log('Error on getTotalTrading service', error);
+    throw new Error(error);
+  }
+}
+
 module.exports = {
   getHighest,
   getAverage,
+  getHighestTrading,
+  getTotalTrading,
 }

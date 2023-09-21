@@ -38,7 +38,46 @@ const getAverage = async (req, res) => {
   }
 }
 
+const getHighestTrading = async (req, res) => {
+  try {
+    const {
+      date
+    } = req.query;
+    const data = await queryService.getHighestTrading({ date });
+    res.status(200).json({
+      ...data
+    });
+  } catch (error) {
+    console.log('Error on getHighestTrading controller', error);
+    return res.status(500).json({
+      msg: 'Server error',
+      error: error.message
+    });
+  }
+}
+
+const getTotalTrading = async (req, res) => {
+  try {
+    const {
+      date,
+      serie
+    } = req.query;
+    const data = await queryService.getTotalTrading({ date, serie });
+    res.status(200).json({
+      ...data
+    });
+  } catch (error) {
+    console.log('Error on getTotalTrading controller', error);
+    return res.status(500).json({
+      msg: 'Server error',
+      error: error.message
+    });
+  }
+}
+
 module.exports = {
   getHighest,
   getAverage,
+  getHighestTrading,
+  getTotalTrading,
 }

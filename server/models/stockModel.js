@@ -91,10 +91,41 @@ const getAverage = async ({
   }
 }
 
+const getHighestTrading = async ({
+  date,
+}) => {
+  try {
+    const [results] = await sequelize.query(`SELECT MAX(stock_totTrdQty) AS trading_volume, stock_symbol AS symbol FROM stocks WHERE stock_timestamp = '${date}' GROUP BY stock_symbol`);
+    return {
+      results,
+    };
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+const getTotalTrading = async ({
+  date,
+  serie
+}) => {
+  try {
+    const [results] = await sequelize.query(`SELECT SUM(stock_totTrdQty) AS total_trading_volume FROM stocks WHERE stock_timestamp = '${date}' AND stock_series = '${serie}'`);
+    return {
+      total_trading_volume: results[0].total_trading_volume
+    };
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
 module.exports = {
   createTable,
   insert,
   countTotal,
   getHighest,
-  getAverage
+  getAverage,
+  getHighestTrading,
+  getTotalTrading,
 };

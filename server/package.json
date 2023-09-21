@@ -1,0 +1,26 @@
+{
+  "name": "market-data",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:server": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ersajo/market-data.git"
+  },
+  "author": "ersajo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ersajo/market-data/issues"
+  },
+  "homepage": "https://github.com/ersajo/market-data#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "sequelize": "^6.33.0",
+    "tedious": "^16.4.0"
+  }
+}

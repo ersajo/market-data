@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  backend:
+    container_name: backend
+    image: backend:0.0.1
+    build:
+      context: .
+    ports:
+      - "4000:4000"
+    environment:
+      - PORT=4000
+      - NODE_ENV=development
+      - SQL_DATABASE=marketdata
+      - SQL_USER=sa
+      - SQL_PASSWORD=marketD@ta12345
+      - SQL_HOST=sql_server_db
+      - SQL_PORT=1433
+    volumes:
+      - serverdata:/var
+    depends_on:
+      - sql_server_db
+  sql_server_db:
+    container_name: sql_server_db
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    user: root
+    volumes:
+      - sqlserver:/var/opt/mssql
+    ports:
+      - "1433:1433"
+    environment:
+      MSSQL_SA_PASSWORD: "marketD@ta12345"
+      ACCEPT_EULA: "Y"
+
+volumes:
+  sqlserver: {}
+  serverdata: {}
